@@ -21,8 +21,14 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+Route::redirect('/', '/login');
+
+
 Route::get('/', [HomeController::class, 'checkUserType']);
 
+/* Route::get('/', [NoticiasController::class, 'index'])->name('noticias.index');
+
+ */
 Route::get('/noticias', [NoticiasController::class, 'index']);
 Route::get('/noticias/create', [NoticiasController::class, 'create']);
 Route::post('/noticias', [NoticiasController::class, 'store']);
@@ -38,11 +44,11 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->middlew
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
 
 Route::get('adm/dashboard', function(){
-    return view('adm-dashboard');
+    return view('welcome');
 })->name('adm.dashboard');
 
 Route::get('user/dashboard', function(){
-    return view('welcome');
+    return view('user.dashboard');
 })->name('user.dashboard');
 
 Route::get('assistent/dashboard', function(){
@@ -54,3 +60,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         return view('dashboard');
     })->name('dashboard');
 });
+
+

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelNoticia;
 use Illuminate\Http\Request;
 use App\Http\Requests\NoticiasRequest;
-use App\Models\Models\ModelNoticias;
 use App\Models\User;
 
 class NoticiasController extends Controller
@@ -14,17 +14,18 @@ class NoticiasController extends Controller
 
     public function __construct(){
         $this->objUsers = new User();
-        $this->objNoticias = new ModelNoticias();
+        $this->objNoticias = new ModelNoticia();
     }
 
     public function index()
     {
-        $noticias = $this->objNoticias->all();
-        return view('noticias.index', compact('noticias'));
-    }  
+        $noticias = ModelNoticia::all();
+        return view('adm-dashboard', compact('noticias'));
+    }
     
     
-    public function create()
+    
+     public function create()
     {
         $user=$this->objUsers->all();
         return view('noticias.create', compact('user'));
@@ -75,5 +76,5 @@ class NoticiasController extends Controller
     {
         $del=$this->objNoticias->destroy($id);
         return($del)?"sim":"não";
-    }
+    } 
 }   

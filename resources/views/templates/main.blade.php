@@ -25,7 +25,7 @@
                         <a class="nav-link" href="#">Notícias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+                        <a class="nav-link" href="/login">Entrar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">Cadastrar</a>

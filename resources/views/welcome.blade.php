@@ -1,72 +1,38 @@
-@extends('templates.main')
+@extends('layouts.app')
 
-@section('navbar')
-
-        <div class="container">
-            <div class="row">
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-                <div class="card col-md-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-        </div>
+@section('content')
+    <div class="container">
+    <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Título</th>
+                <th scope="col">Data</th>
+                <th scope="col">Ações</th>
+                </tr>
+            </thead>
+                    @if(isset($noticia))
+                    @foreach($noticia as $noticias)
+            <tbody>
+                <tr>
+                    <th scope="row">{{ $noticias->id }}</th>
+                        <td>{{ $noticias->titulo }}</td>
+                        <td>{{ $noticias->created_at->format('d/m/Y H:i:s') }}</td>
+                        <td>
+                            <a href="{{url('noticias/' . $noticias->id)}}">
+                                <button class="btn btn-primary"><i class="bi bi-eye"></i></button>
+                            </a>
+                            <a href="{{url('noticias/' . $noticias->id . '/edit')}}">
+                                <button class="btn btn-success"><i class="bi bi-pencil"></i></button>
+                            </a>
+                            <a href="{{url('noticias/' . $noticias->id)}}" class="js-del">
+                                <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </a>
+                    </td>
+                    @endforeach
+                    @endif
+                </tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
